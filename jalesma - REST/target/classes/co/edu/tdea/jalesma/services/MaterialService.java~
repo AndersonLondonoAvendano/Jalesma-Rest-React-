@@ -1,0 +1,4 @@
+package co.edu.tdea.jalesma.services;
+
+public interface MaterialService {
+}

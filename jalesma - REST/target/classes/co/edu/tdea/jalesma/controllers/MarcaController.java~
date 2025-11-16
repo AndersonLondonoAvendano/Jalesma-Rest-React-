@@ -1,0 +1,48 @@
+package co.edu.tdea.jalesma.controllers;
+
+import co.edu.tdea.jalesma.entities.Marca;
+import co.edu.tdea.jalesma.services.MarcaService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+@Controller
+@RequestMapping("/marcas")
+
+public class MarcaController {
+
+    @Autowired
+    private final MarcaService marcaService;
+
+    @GetMapping
+    public String listar(Model model) {
+        model.addAttribute("marcas", marcaService.findAll());
+        return "marcas/list";
+    }
+
+    @GetMapping("/nuevo")
+    public String nuevo(Model model) {
+        model.addAttribute("marca", new Marca());
+        return "marcas/form";
+    }
+
+    @PostMapping
+    public String guardar(@ModelAttribute Marca marca) {
+        marcaService.save(marca);
+        return "redirect:/marcas";
+    }
+
+    @GetMapping("/editar/{id}")
+    public String editar(@PathVariable int id, Model model) {
+        model.addAttribute("marca", marcaService.findById(id));
+        return "marcas/form";
+    }
+
+    @GetMapping("/eliminar/{id}")
+    public String eliminar(@PathVariable int id) {
+        marcaService.delete(id);
+        return "redirect:/marcas";
+    }
+}

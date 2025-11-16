@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: co.edu.tdea.jalesma.JalesmaCrudApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 12.41 s -- in co.edu.tdea.jalesma.JalesmaCrudApplicationTests

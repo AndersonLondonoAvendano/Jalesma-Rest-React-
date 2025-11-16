@@ -1,0 +1,44 @@
+package co.edu.tdea.jalesma.services.impl;
+
+import co.edu.tdea.jalesma.entities.Bolso;
+import co.edu.tdea.jalesma.repositories.BolsoRepository;
+import co.edu.tdea.jalesma.services.BolsoService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
+public class BolsoServiceImpl implements BolsoService {
+
+    private final BolsoRepository bolsoRepository;
+    
+
+    @Override
+    public List<Bolso> findAll() {
+        return bolsoRepository.findAll();
+    }
+
+    @Override
+    public Bolso findById(int id) {
+        return bolsoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Bolso no encontrado"));
+    }
+
+    @Override
+    public Bolso save(Bolso bolso) {
+        return bolsoRepository.save(bolso);
+    }
+
+    @Override
+    public void delete(int id) {
+        bolsoRepository.deleteById(id);
+    }
+
+    @Override
+    public Bolso update(Bolso bolso) {
+        return bolsoRepository.save(bolso);
+
+    }
+}

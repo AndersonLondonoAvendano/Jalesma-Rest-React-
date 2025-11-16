@@ -1,0 +1,18 @@
+package co.edu.tdea.jalesma.entities;
+
+
+import jakarta.persistence.*;
+import lombok.Data;
+
+@Data
+@Entity
+@Table(name="Materiales")
+public class Material {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    private String tipo;
+    private double precio;
+}

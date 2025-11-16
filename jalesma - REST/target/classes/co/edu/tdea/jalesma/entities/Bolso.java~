@@ -1,0 +1,44 @@
+package co.edu.tdea.jalesma.entities;
+
+import jakarta.persistence.*;
+import lombok.Data;
+import java.util.List;
+
+@Data
+@Entity
+@Table(name="Bolsos")
+public class Bolso {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @ManyToOne
+    @JoinColumn(name = "marca_id")
+    private Marca marca;
+
+    private String modelo;
+    private String color;
+    private String tamanio;
+    private int precio;
+
+    @ManyToMany
+    @JoinTable(
+            name = "bolso_material",
+            joinColumns = @JoinColumn(name = "bolso_id"),
+            inverseJoinColumns = @JoinColumn(name = "material_id")
+    )
+    private List<Material> materiales;
+
+
+    public Bolso(int id, Marca marca, String modelo, String color, String tamanio, int precio, List<Material> materiales) {
+        this.id = id;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.color = color;
+        this.tamanio = tamanio;
+        this.precio = precio;
+        this.materiales = materiales;
+    }
+    public Bolso(){}
+}
